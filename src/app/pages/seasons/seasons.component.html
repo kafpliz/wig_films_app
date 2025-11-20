@@ -1,0 +1,106 @@
+@defer (on immediate;) {
+<div class="wrapper">
+
+    <div class="panel">
+        <div class="header">
+            <span>Сезоны</span>
+        </div>
+        <div class="container">
+            <swiper-container class="swiper" space-between="10" slides-per-view="auto">
+
+                @for (item of seasons.seasons; track $index) {
+                <swiper-slide class="slide"
+                    [class.active]="activeSeasonIdx === item.enName.toLowerCase().replaceAll(' ', '_')"
+                    (click)="openSeason(item.enName.toLowerCase().replaceAll(' ', '_'))">
+                    <span>{{item.number}}</span>
+                </swiper-slide>
+
+                }
+            </swiper-container>
+        </div>
+
+    </div>
+
+
+    <div class="content">
+
+
+        @if (showSeason) {
+
+        <p-virtualscroller [items]="season" [itemSize]="0" [autoSize]="true"
+            [style]="{ width: '100%', height: '100vh' }">
+            <ng-template #item let-season let-options="options">
+                <div class="fragment" [id]="season.enName.toLowerCase().replaceAll(' ', '_')">
+                    <div class="details">
+                        @if (season.poster && season.poster.previewUrl) {
+                        <img [src]="season.poster.previewUrl" alt="Season poster" srcset="">
+                        }
+                        @else { <img src="/img/LOGO.png" alt="no img" srcset=""> }
+                        <div class="info">
+                            <div class="name">
+                                <span class="name__span">{{(seasons.name || seasons.altName)}}</span>
+                                <span class="name_season">{{(season.name || season.enName || 'Неизвестно') + ','}}
+                                    {{season.episodesCount}} серий</span>
+                            </div>
+                            @if (season.description) {
+                            <div class="description">
+                                {{season.description}}
+                            </div>
+                            }
+                            @if (season.duration) {
+                            <div class="item">
+                                <span>Длительность сезона:</span>
+                                <span>{{season.duration}} мин.</span>
+                            </div>
+                            }
+                            <div class="item">
+                                <span>Дата выхода:</span>
+                                <span>{{season.airDate | date:'longDate'}}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="series">
+
+                        @for (item of season.episodes; track $index) {
+                        <div class="episode">
+                            @if (item.still && item.still.previewUrl) { <img
+                                [src]="item.still.previewUrl || item.still.url" alt="episode img" srcset=""
+                                loading="lazy"> }
+                            @else {
+                            <div class="stub">
+                                <img src="/img/LOGO.png" alt="no img" srcset="">
+                            </div>
+                            }
+                            <div class="info">
+                                <span class="name">{{item.number}}. {{item.name || item.enName || 'Неизвестно'}}</span>
+                                <app-truncate-text>
+                                    {{item.description || item.enDescription}}
+                                </app-truncate-text>
+
+
+                            </div>
+                        </div>
+                        }
+
+                    </div>
+
+
+
+                </div>
+            </ng-template>
+        </p-virtualscroller>
+
+
+        } @else {
+        <app-sckeleton />
+        }
+
+
+    </div>
+
+</div>
+
+} @placeholder (minimum 100ms){
+<app-sckeleton />
+}

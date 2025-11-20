@@ -1,0 +1,72 @@
+<div class="wrapper">
+    @if (title) {
+    <div class="title" [ngStyle]="{gap: isCollection? '5px' : '20px'}"
+        [routerLink]="isCollection ? ['collections'] : null">
+        <span class="title__span">{{title}}</span>
+        @if (isTop) {
+        <img src="/img/kp-logo.png" alt="" srcset="">
+        }
+        @if (isCollection) {
+        <img src="/img/arrow_genre.svg" alt="" srcset="">
+
+        }
+    </div>
+    }
+
+    <div class="container" #container [ngStyle]="getContainerStyle()">
+        <swiper-container class="swiper-container" space-between="20" [loop]="loop" [attr.centered-slides]="!isVertical"
+            [attr.slides-per-view]="getSlidesPerView()" #swiper>
+
+            @if (collection && isCollection) {
+            @for (item of collection; track $index; let i = $index) {
+            <swiper-slide [ngClass]="getSwiperClass()">
+                <div class="image-container">
+                    <img [src]="item.cover" alt="">
+                    <div class="overlay">
+                          <span class="text">{{ item.name }}</span>
+                        <div class="btn"  [routerLink]="['collections', item.slug]"><span>Открыть</span></div>
+                    </div>
+                </div>
+
+
+            </swiper-slide>
+            }
+            }
+            @if (movies && !isCollection) {
+            @for (item of movies; track $index; let i = $index) {
+            <swiper-slide [ngClass]="getSwiperClass()" [routerLink]="[routing, item.id]">
+
+                @if (item.rating) {
+                <div class="rating" [ngStyle]="{background: checkRatingStyle(item.rating.kp)}">
+                    <span class="rating__span">{{item.rating.kp.toFixed(1)}}</span>
+                </div>
+                }
+                <img class="img" [src]="item.logo" alt="Img" decoding="async" loading="eager">
+
+                <div class="details">
+                    <div class="z">
+                        <span class="slide__span slide_name">{{item.name || item.alternative_name ||
+                            'Неизвестно'}}</span>
+                        <div class="spans">
+
+                            @if (item.categories && isTop) { <span
+                                class="slide__span slide_details">{{item.categories[0].name}}</span>}
+                            @if (item.movie_length && isTop) { <span
+                                class="slide__span slide_details">{{item.movie_length + '
+                                мин'}}</span>}
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </swiper-slide>
+            }
+            }
+
+
+
+        </swiper-container>
+    </div>
+
+</div>

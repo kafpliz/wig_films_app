@@ -1,0 +1,139 @@
+:host ::ng-deep {
+
+    .p-tab {
+        text-transform: capitalize;
+        border-color: var(--tabLine-color);
+        color: var(--text-color);
+    }
+
+    .p-tab:not(.p-tab-active):not(.p-disabled):hover {
+        color: var(--tab-active-color);
+        border-color: var(--tabLine-active-color);
+    }
+
+    .p-tab-active {
+        color: var(--tab-active-color);
+        border-color: var(--tabLine-active-color);
+    }
+
+    .p-tablist-active-bar {
+        border-color: var(--tabLine-active-color);
+        background: var(--tabLine-active-color);
+
+    }
+
+    .p-tablist-nav-button {
+        display: none;
+    }
+
+    .p-tablist-tab-list {
+        background: transparent;
+        border-color: var(--tabLine-color);
+    }
+
+    .p-tabpanels {
+        background: transparent;
+        padding: 10px 0;
+    }
+
+    .p-tabpanel {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+    }
+}
+
+.wrapper {
+    width: 100%;
+    min-height: 100px;
+    padding: 20px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.details {
+    width: 100%;
+    min-height: 100px;
+    display: flex;
+    gap: 15px;
+
+    .photo {
+        width: 180px;
+        border-radius: 14px;
+    }
+
+    .info {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        .names {
+            font-family: Open Sans;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--text-secondary);
+            text-transform: capitalize;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .names:first-child {
+            font-size: 30px;
+            color: var(--text-color);
+        }
+
+        .age {
+            font-weight: 400;
+            font-size: 14px;
+           color: var(--text-color);
+        }
+    }
+
+}
+
+.filmography {
+    width: 100%;
+    min-height: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    h2 {
+        color: white;
+        font-family: Open Sans;
+        font-weight: 700;
+        font-size: 25px;
+    }
+
+    .content {
+        width: 100%;
+        min-height: 10px;
+        /*         display: flex;
+        flex-direction: column;
+        gap: 40px; */
+    }
+}
+.best{
+    width: 100%;
+    min-height: 375px;
+    position: relative;
+
+    .container{
+        position: absolute;
+        width: calc(100% + 44px);
+        left: -22px;
+    }
+}
+
+
+@media screen and (max-width: 360px) {
+    .details {
+        flex-direction: column;
+        align-items: center;
+    }
+}

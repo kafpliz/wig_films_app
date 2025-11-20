@@ -1,0 +1,23 @@
+@if (data) {
+@defer (on immediate) {
+<div class="wrapper">
+    <div class="panel">
+        @for (item of genres; track $index) {
+        <div class="item" [class.active]="activeGenre == item.name" routerLink="./" [queryParams]="{genre:item.name}">
+            <span>{{item.name}}</span>
+        </div>
+        }
+
+    </div>
+    <div class="content">
+        @for (item of data.data; track $index) {
+        <app-card [card]="item" [routerLink]="['../movie', item.id]" />
+        }
+    </div>
+</div>
+} @placeholder (minimum 300ms){
+<app-sckeleton />
+}
+}@else {
+<app-sckeleton />
+}

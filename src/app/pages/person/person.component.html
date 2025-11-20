@@ -1,0 +1,53 @@
+@if (person) {
+@defer (on immediate) {
+<div class="wrapper">
+    <div class="details">
+        <img [src]="person.data.info.id.photo" class="photo" alt="Person photo" srcset="">
+        <div class="info">
+            <h2 class="names">{{person.data.info.names.name}}</h2>
+            <h2 class="names">{{person.data.info.names.en}}</h2>
+            @if (person.data.info.date.age) {
+            <span class="age">Возраст: {{person.data.info.date.age}} г.</span>
+            }
+        </div>
+    </div>
+
+    @if (person.data.best_films && person.data.best_films.length != 0) {
+    <div class="best" #best>
+            <div class="container">
+                <app-swiper [movies]="person.data.best_films" [isVertical]="true" [title]="'Лучшие фильмы'" [loop]="false" [routing]="'../../movie'"/>
+            </div>
+    </div>
+    }
+
+    <div class="filmography">
+        <h2>Фильмография</h2>
+        <div class="content">
+            <p-tabs scrollable [value]="person.data.films[0].profession">
+                <p-tablist>
+                    @for (tab of person.data.films; track $index) {
+                    <p-tab [value]="tab.profession">
+                        {{tab.profession | stringEnds}}
+                    </p-tab>
+                    }
+                </p-tablist>
+                <p-tabpanels>
+                    @for (tab of person.data.films; track $index) {
+                    <p-tabpanel [value]="tab.profession">
+                        @for (item of tab.data; track $index) {
+                        <app-card [card]="item" [routerLink]="['../../movie', item.id]" />
+                        }
+                    </p-tabpanel>
+                    }
+                </p-tabpanels>
+            </p-tabs>
+        </div>
+    </div>
+</div>
+} @placeholder (minimum 100ms){
+<app-sckeleton />
+}
+
+} @else {
+<app-sckeleton />
+}

@@ -1,0 +1,8 @@
+<div class="container"  (click)="expandText()">
+    <div class="text" #text  [class.truncated]="isTruncated && !isExpanded" [class.expanded]="isExpanded">
+          <ng-content></ng-content>
+    </div>
+   @if (isTruncated && showMoreBtn) {
+    <span class="more-btn">{{isExpanded ? 'Свернуть': 'Ещё...'}}</span>
+   }
+</div>

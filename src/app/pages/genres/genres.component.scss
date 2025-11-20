@@ -1,0 +1,47 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 10px;
+}
+
+.panel {
+    width: 100%;
+    min-height: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    .item {
+        width: fit-content;
+        height: 32px;
+        background: white;
+        border: 1px solid var(--border-color);
+        display: flex;
+        padding: 0 10px;
+        border-radius: 12px;
+        align-items: center;
+        cursor: pointer;
+     
+        span {
+            font-family: Rubik;
+            font-size: 15px;
+         color: black;
+            font-weight: 300;
+        }
+    }
+    .active{
+        background: rgb(211, 9, 47);
+        span {
+color: white;
+        font-weight: bold;
+        }
+        
+    }
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+}

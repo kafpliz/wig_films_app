@@ -1,0 +1,32 @@
+.wrapper {
+    width: 100%;
+    min-height: 100vh;
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .title {
+        color: var(--text-color);
+        font-family: Open Sans;
+        font-weight: 700;
+        font-size: 30px;
+    }
+}
+
+.content {
+    width: 100%;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .wait {
+        text-align: center;
+        color: var(--text-color);
+        font-family: Open Sans;
+        font-weight: 700;
+        font-size: 30px;
+        align-self: center;
+    }
+}

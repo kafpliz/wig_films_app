@@ -1,0 +1,73 @@
+@if (data) {
+@defer (on immediate) {
+<div class="wrapper">
+    @if (data.popular && data.popular.error == false && data.popular.data.length != 0) {
+    <app-swiper [title]="'Самое популярное'" [movies]="data.popular.data"></app-swiper>
+    }
+    @if (data.inovations && data.inovations.error == false && data.inovations.data.length != 0) {
+    <app-swiper [title]="'Новинки'" [movies]="data.inovations.data" [isVertical]="true"></app-swiper>
+    }
+    <app-swiper [title]="'Советуем посмотреть'" [isCollection]="true" [collection]="data.collections.data" />
+    <div class="genres">
+
+        <div class="title" [routerLink]="['genres']">
+            <span>Жанры</span> <img src="/img/arrow_genre.svg" alt="" srcset="">
+        </div>
+        <div class="content">
+            @for (item of genres; track $index) {
+            <div class="item" [routerLink]="['genres']" [queryParams]="{genre:item.name}">
+                <span>{{item.name}}</span>
+            </div>
+            }
+        </div>
+    </div>
+    @if (data.top && data.top.error == false && data.top.data.length != 0) {
+    <app-swiper [title]="'Топ кино'" [movies]="data.top.data" [isTop]="true"></app-swiper>
+    }
+
+    <app-search />
+
+
+    <div class="random">
+        <div class="button" (click)="changeStateDialog()">
+            <span>РАНДОМАЙЗЕР</span>
+            <span>когда не знаете что посмотреть</span>
+        </div>
+       <p-dialog [modal]="true" [(visible)]="visible" position="bottom" header="РАНДОМАЙЗЕР" [dismissableMask]="true"   [style]="
+       {width: '100%', maxWidth: '576px', minHeight: '500px',background: 'var(--bg-color)', border: 'none', 
+
+       }">
+        <div class="modal">
+            <div class="select" >
+                <p-select [options]="fullGenres" optionLabel="name" [(ngModel)]="selected" [placeholder]="'Выберите жанр'" required="true" (onChange)="getRandom()"
+                [style]="{border: 'none', }" 
+                />
+            </div>
+           @if (random && random.error == false) {
+             <div class="container">
+                <app-card [card]="random.data"/>
+            </div>
+
+            <div class="panel">
+                <div class="item" [routerLink]="['movie', random.data.id]">
+                    <span>Открыть</span>
+                </div>
+                <div class="item" (click)="getRandom()">
+                    <span>Следующий</span>
+                </div>
+            </div>
+           }
+
+        </div>
+
+       </p-dialog>
+    </div>
+
+</div>
+} @placeholder (minimum 300ms){
+<app-sckeleton />
+}
+
+} @else {
+<app-sckeleton />
+}

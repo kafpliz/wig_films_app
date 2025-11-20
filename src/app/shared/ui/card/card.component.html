@@ -1,0 +1,39 @@
+<div class="card">
+    <div class="card_poster">
+        <img [src]="card.logo" class="card_poster__img" alt="Card logo">
+        @if (card.rating.kp) {
+        <div class="card_rating" [ngStyle]="{background: checkRatingStyle(card.rating.kp)}">
+            <span class="">{{card.rating.kp.toFixed(1)}}</span>
+        </div>
+        }
+        @if (isForPerson && card.profession) {
+            <div class="proffesion">
+                <span>{{card.profession | stringEnds}}</span>
+            </div>
+        }
+    </div>
+
+    <div class="card_info">
+        <div class="card_info_names">
+            <span class="card_info_names__span">{{card.name || card.alternative_name || 'Неизвестно '}}</span>
+            @if (card.alternative_name) {
+            <span class="card_info_names__span">{{card.alternative_name}}</span>
+            }
+        </div>
+
+        <div class="card_info_genres">
+
+            @if (card.type) { <span class="genres_item item_series">{{card.type| engToRus}}</span> }
+            @if (card.categories) {
+                @for (item of card.categories.slice(0, 5); track $index ;let idx = $index) {
+                <span class="genres_item">{{item.name}}</span>
+             }
+            }
+
+            @if (card.age_rating) {
+            <span class="genres_item item_age-rating">{{card.age_rating}}+</span>
+            }
+        </div>
+    </div>
+
+</div>

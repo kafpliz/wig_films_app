@@ -1,0 +1,14 @@
+<div class="wrapper">
+    <span class="title">Избранное</span>
+
+    <div class="content">
+        @if (data.length == 0) {
+            <span class="wait">{{waitMessage}}</span>
+        } @else {
+        @for (item of data; track $index) {
+            <app-card [card]="item" [routerLink]="['../movie', item.id]"/>
+        }
+        }
+
+    </div>
+</div>

@@ -1,0 +1,37 @@
+.container {
+    position: relative;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+        padding-bottom: 18px;
+}
+
+.text {
+    line-height: 1.4;
+     color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 200;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.4;
+    max-height: 78px;
+        transition: all 0.5s ease-in-out;
+}
+
+.more-btn {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 0 5px;
+    font-weight: bold;
+    font-size: 12px;
+    color: var(--text-color);
+}
+
+.expanded {
+    -webkit-line-clamp: initial;
+
+    max-height: 1000px;
+
+}

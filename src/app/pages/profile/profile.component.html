@@ -1,0 +1,97 @@
+@if (user) {
+    <div class="wrapper">
+    <div class="container">
+        <div class="wrapper_header">
+            <span class="wrapper_header__span">Личный кабинет</span>
+        </div>
+
+        <div class="settings">
+            <div class="settings_item">
+                <div class="settings_item_header__span">Покупка подписки</div>
+                <a class="settings_item_container settings_item_btn" (click)="pay()">
+                    <span class="settings_item__span">{{user.isSubscribe ? "Продлить (149₽)" : "Купить (149₽)"}}</span>
+                </a>
+            </div>
+
+            <div class="settings_item">
+                <div class="settings_item_header__span">Состояние подписки</div>
+
+                <div class="settings_item_container sub_condition">
+                    <span class="settings_item__span">
+                        {{user.isSubscribe ? ((user.endDate) * 1000 | date: 'short') : "Неактивна" }}
+                    </span>
+                    @if (user.isSubscribe) {
+                    <div class="sub_condition_circle sub_condition_circle-green"></div>
+                    } @else {
+                    <div class="sub_condition_circle sub_condition_circle-red"></div>
+                    }
+
+                </div>
+            </div>
+
+            <div class="settings_item">
+                <div class="settings_item_header__span"></div>
+                 <div class="settings_item_container app_theme" (click)="toggleTheme()">
+                    <div class="app_theme__div">
+                        <span class="settings_item__span">{{(themeService.currentTheme$ | async) ==  'dark'? 'Светлая тема': 'Тёмная тема'}}</span>
+                        <img [src]="(themeService.currentTheme$ | async) ==  'dark'? '/img/sun.svg' : '/img/moon.svg'" alt="" srcset="">
+                      
+                    </div>
+                  
+                </div>
+            </div>
+            
+            @if (promoDetails) {
+            <div class="settings_item">
+                <div class="settings_item_container settings_item_container-promocode">
+                   @if (promoDetails.success) { <span class="success">{{promoDetails.msg}}</span> } 
+                   @if (!promoDetails.success) { <span class="error">{{promoDetails.msg}}</span> } 
+                </div>
+            </div>
+
+            }
+
+            <div class="settings_item">
+                <div class="settings_item_header__span">Промокод</div>
+                <div class="settings_item__div">
+                    <input class="settings_item_container settings_item_container-input" placeholder="Введите промокод"
+                        [(ngModel)]="promocode">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"
+                        class="settings_item_container-img" (click)="sendPromo()">
+                        <path
+                            d="M476.59 227.05l-.16-.07L49.35 49.84A23.56 23.56 0 0027.14 52 24.65 24.65 0 0016 72.59v113.29a24 24 0 0019.52 23.57l232.93 43.07a4 4 0 010 7.86L35.53 303.45A24 24 0 0016 327v113.31A23.57 23.57 0 0026.59 460a23.94 23.94 0 0013.22 4 24.55 24.55 0 009.52-1.93L476.4 285.94l.19-.09a32 32 0 000-58.8z" />
+                    </svg>
+                </div>
+            </div>
+
+            <div class="settings_item">
+                <div class="settings_item_header__span">Ваша реферальная ссылка</div>
+                <div class="settings_item__div">
+                    <div class="settings_item_container " (click)="copyRef(user.refUrl)"
+                        [ngClass]="{'settings_item_container-copied': isCopy}">
+                        @if (!isCopy) {
+                        <span class="settings_item__span">Скопировать</span>
+                        } @else {
+                        <span class="settings_item__span">Скопировано</span>
+                        <img src="/img/profile_check.svg" alt="Img check" srcset="" width="32px">
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <a class="settings_item support" href="https://t.me/WIGsupp">
+                <div class="settings_item_container">
+                    <img src="/img/support_img.jpg" alt="" srcset="">
+                    <span class="settings_item__span">Обратиться в поддержку</span>
+                </div>
+            </a>
+
+            <div class="settings_item">
+                <a href="https://bot.wig24ru.space/offer.html" class="settings_item_header__span__offer">
+                    <span class="settings_item_header__span__offer">Entrepreneur's data</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+}

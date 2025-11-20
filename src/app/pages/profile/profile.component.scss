@@ -1,0 +1,227 @@
+.wrapper {
+    width: 100%;
+    min-height: 100px;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 0 30px;
+}
+
+.wrapper_header {
+    width: 100%;
+    min-height: 22px;
+    padding: 0 30px;
+
+}
+
+.wrapper_header__span {
+    font-size: 22px;
+    font-weight: bold;
+    font-family: Rubik;
+    color: var(--text-color);
+}
+
+.settings {
+    width: 100%;
+    min-height: 100px;
+    padding: 24px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border: 1px solid #262626;
+    border-radius: 10px;
+    align-items: center;
+
+}
+
+.settings_item {
+    width: 305px;
+    min-height: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    position: relative;
+
+    .settings_item_header__span__offer {
+        color: var(--text-color);
+      
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 1.5;
+        letter-spacing: 0.5px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .settings_item_header__span {
+        color: var(--text-color);
+        font-family: Manrope;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .settings_item__div {
+        width: 100%;
+        position: relative;
+    }
+
+    .settings_item_btn {
+        text-decoration: none;
+    }
+
+    .settings_item_container {
+        width: 100%;
+        height: 52px;
+        background: #331453;
+        border-radius: 6px;
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+
+        .settings_item__span {
+            font-family: Manrope;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    }
+
+    .sub_condition {
+        background: #703DA5;
+        position: relative;
+
+        .sub_condition_circle {
+            width: 18px;
+            height: 18px;
+
+            border-radius: 50%;
+            position: absolute;
+            top: -2px;
+            right: -4px;
+        }
+
+        .sub_condition_circle-red {
+            background: red;
+        }
+
+        .sub_condition_circle-green {
+            background: #00FF47;
+        }
+    }
+
+    .app_theme {
+        background: #4C1C7D;
+
+        cursor: pointer;
+
+        .app_theme__div {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+            img{
+                width: 25px;
+            }
+        }
+    }
+
+    .settings_item_container-input {
+        border: none;
+        outline: none;
+        text-align: center;
+        font-family: Manrope;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 0 45px;
+    }
+
+    .settings_item_container-img {
+        cursor: pointer;
+        position: absolute;
+        width: 32px;
+        width: 32px;
+        right: 10px;
+        top: 10px;
+        fill: rgb(131 95 197);
+    }
+
+    .settings_item_container-promocode {
+        font-size: 12px;
+
+        span {
+            font-family: Manrope;
+            font-weight: bold;
+        }
+
+        span.success {
+            color: rgb(0, 255, 136);
+        }
+        span.error {
+            color: rgb(255, 31, 31);
+        }
+    }
+
+    .settings_item_container-copied {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+        transition: all .3s linear;
+        background: #02a302;
+    }
+}
+
+.support {
+    text-decoration: none;
+
+    .settings_item_container {
+        display: flex;
+        padding: 0 15px;
+
+        flex-direction: row;
+        gap: 15px;
+
+        img {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+        }
+
+    }
+
+}
+
+@media screen and (max-width:575px) {
+    .wrapper {
+        width: 100%;
+
+    }
+}
+
+@media screen and (max-width:420px) {
+    .wrapper {
+        padding: 20px 10px;
+    }
+
+    .container {
+        padding: 0;
+    }
+}
+
+@media screen and (max-width:360px) {
+    .settings_item {
+        width: 90%;
+
+    }
+
+}
