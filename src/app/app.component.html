@@ -1,26 +1,32 @@
 @if(isApi){
-  <div class="wrapper" [ngClass]="{'padding': needPad}">
+<div class="wrapper" [ngClass]="{'padding': needPad}">
+  <div class="snowblock" [ngStyle]="{'display': isSnow() ? '': 'none'}"></div>
   <div class="header" [class.opacity]="headerOpacity">
     <div class="items">
+
       <a class="items__a" [routerLink]="['']" role="link">
-      @if (currTheme == 'dark') {
-          <img src="/img/LOGO.png" alt="Logo" class="logo">
-      }@else {
-         <img src="/img/LOGO_dark.png" alt="Logo" class="logo">
-      }
+
+        @if (currTheme == 'dark') {
+        <img src="/img/new-year-logo_200x200.png" alt="Logo" class="logo">
+        }@else {
+        <img src="/img/new-LOGO_dark.png" alt="Logo" class="logo">
+        }
       </a>
+      <p-togglebutton [(ngModel)]="isSnow" onLabel="Снег вкл." offLabel="Снег выкл." (onChange)="toggleAnimation()" />
 
       <a class="link" [routerLink]="['/profile']">
         <img src="/img/profile.svg" alt="Profile link" width="24px">
       </a>
+
+      
     </div>
   </div>
   <div class="content">
     <router-outlet />
-  
+
   </div>
 
 </div>
 } @else {
-  <app-sckeleton />
+<app-sckeleton />
 }

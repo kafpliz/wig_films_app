@@ -1,4 +1,22 @@
 .wrapper{
     padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 
+    .title{
+       span {
+         color: var(--text-color);
+    font-family: Rubik;
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 30px;
+    letter-spacing: -0.4079999924px;
+       }
+    }
+    .movies {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
 }

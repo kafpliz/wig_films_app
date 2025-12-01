@@ -73,6 +73,17 @@ export class SwiperComponent implements AfterViewInit, OnDestroy {
     }
    return null
   }
+
+  isCenteredSlides(){
+    if(this.isVertical){
+      return false
+    }
+    if(this.isCollection){
+      return false
+    }
+    return true
+  }
+
   ngOnDestroy(): void {
 
     if (this.isVertical == false && this.isCollection == false) {

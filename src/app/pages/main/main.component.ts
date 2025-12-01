@@ -20,7 +20,7 @@ import { CardComponent } from '../../shared/ui/card/card.component';
   styleUrl: './main.component.scss'
 })
 export class MainComponent implements OnInit{
-  data!: IMainChapter
+  data: IMainChapter | null = null
   genres = genre.slice(0,9)
   fullGenres = genre;
   #service = inject(MainService)
@@ -28,7 +28,9 @@ export class MainComponent implements OnInit{
   selected:{name:string, slug:string} | null = null
   random!:IMRandom
 
-  ngOnInit(): void {
+
+  ngOnInit(): void {  
+
     this.#service.getData().subscribe(movies=> {
       this.data = {
         inovations: movies.innovation,

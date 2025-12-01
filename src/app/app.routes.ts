@@ -8,6 +8,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { PersonComponent } from './pages/person/person.component';
 import { CollectionsComponent } from './pages/collections/collections.component';
 import { CollectionDetailComponent } from './pages/collections/components/collection-detail/collection-detail.component';
+import { AdventCalendarComponent } from './pages/advent-calendar/advent-calendar.component';
+
 
 export const routes: Routes = [
     { path: '', component: MainComponent },
@@ -23,5 +25,6 @@ export const routes: Routes = [
             {path: '', component: CollectionsComponent},
             {path: ':slug',component: CollectionDetailComponent }
         ]
-    }
+    },
+    {path: 'advent', component: AdventCalendarComponent,}
 ];

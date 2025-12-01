@@ -1,13 +1,26 @@
+@defer (when data) {
 @if (data) {
-@defer (on immediate) {
 <div class="wrapper">
+
+    <div class="calendar" [routerLink]="['advent']">
+        <div class="block">
+            <div class="text">
+                <span class="text__span-name">Новогодний АДВЕНТ КАЛЕНДАРЬ</span>
+                <span class="text__span-info">Заходи и узнай какой фильм мы для тебя подготовили на сегодня! </span>
+                
+            </div>
+            <img class="block__img-background" src="/img/tree.png" alt="New year tree" srcset="">
+        </div>
+    </div>
+
     @if (data.popular && data.popular.error == false && data.popular.data.length != 0) {
     <app-swiper [title]="'Самое популярное'" [movies]="data.popular.data"></app-swiper>
     }
     @if (data.inovations && data.inovations.error == false && data.inovations.data.length != 0) {
     <app-swiper [title]="'Новинки'" [movies]="data.inovations.data" [isVertical]="true"></app-swiper>
     }
-    <app-swiper [title]="'Советуем посмотреть'" [isCollection]="true" [collection]="data.collections.data" />
+    <app-swiper [title]="'Советуем посмотреть'" [isCollection]="true" [collection]="data.collections.data"
+        [loop]="false" />
     <div class="genres">
 
         <div class="title" [routerLink]="['genres']">
@@ -33,41 +46,39 @@
             <span>РАНДОМАЙЗЕР</span>
             <span>когда не знаете что посмотреть</span>
         </div>
-       <p-dialog [modal]="true" [(visible)]="visible" position="bottom" header="РАНДОМАЙЗЕР" [dismissableMask]="true"   [style]="
+        <p-dialog [modal]="true" [(visible)]="visible" position="bottom" header="РАНДОМАЙЗЕР" [dismissableMask]="true"
+            [style]="
        {width: '100%', maxWidth: '576px', minHeight: '500px',background: 'var(--bg-color)', border: 'none', 
 
        }">
-        <div class="modal">
-            <div class="select" >
-                <p-select [options]="fullGenres" optionLabel="name" [(ngModel)]="selected" [placeholder]="'Выберите жанр'" required="true" (onChange)="getRandom()"
-                [style]="{border: 'none', }" 
-                />
-            </div>
-           @if (random && random.error == false) {
-             <div class="container">
-                <app-card [card]="random.data"/>
-            </div>
-
-            <div class="panel">
-                <div class="item" [routerLink]="['movie', random.data.id]">
-                    <span>Открыть</span>
+            <div class="modal">
+                <div class="select">
+                    <p-select [options]="fullGenres" optionLabel="name" [(ngModel)]="selected"
+                        [placeholder]="'Выберите жанр'" required="true" (onChange)="getRandom()"
+                        [style]="{border: 'none', }" />
                 </div>
-                <div class="item" (click)="getRandom()">
-                    <span>Следующий</span>
+                @if (random && random.error == false) {
+                <div class="container">
+                    <app-card [card]="random.data" />
                 </div>
+
+                <div class="panel">
+                    <div class="item" [routerLink]="['movie', random.data.id]">
+                        <span>Открыть</span>
+                    </div>
+                    <div class="item" (click)="getRandom()">
+                        <span>Следующий</span>
+                    </div>
+                </div>
+                }
+
             </div>
-           }
 
-        </div>
-
-       </p-dialog>
+        </p-dialog>
     </div>
 
 </div>
-} @placeholder (minimum 300ms){
-<app-sckeleton />
 }
-
-} @else {
+} @placeholder {
 <app-sckeleton />
 }

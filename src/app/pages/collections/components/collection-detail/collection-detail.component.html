@@ -1,3 +1,20 @@
 <div class="wrapper">
-    <div class="title">{{title}}</div>
+    <div class="title"><span>{{title}}</span></div>
+    @defer (when movies().length > 0 || !loading()) {
+    <div class="movies">
+        @if (movies()) {
+        @for (item of movies(); track $index) {
+        <app-card [card]="item" [routerLink]="['../../movie', item.id]" />
+        }
+        }
+    </div>
+  
+    @if(loadingMore()){
+      <p-progress-spinner ariaLabel="loading" [ngStyle]="{ display: 'grid'}" />
+    }
+
+    }@placeholder {
+    <app-sckeleton />
+    }
+
 </div>

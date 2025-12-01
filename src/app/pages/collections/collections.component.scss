@@ -1,6 +1,23 @@
 .wrapper {
     padding: 20px 10px;
     display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.title {
+    span {
+        color: var(--text-color);
+        font-family: Rubik;
+        font-size: 30px;
+        font-weight: 500;
+        line-height: 30px;
+        letter-spacing: -0.4079999924px;
+    }
+}
+
+.collections {
+    display: flex;
     flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
@@ -76,17 +93,20 @@
             }
         }
 
-    
 
-        &:active .overlay, &:hover .overlay{
+
+        &:active .overlay,
+        &:hover .overlay {
             opacity: 1;
+
             .text {
-            display: -webkit-box;
-        }
+                display: -webkit-box;
+            }
+
             .btn {
                 display: grid;
                 pointer-events: all;
-                  opacity: 1;
+                opacity: 1;
             }
         }
     }

@@ -11,6 +11,8 @@ export interface IMainChapter {
 export interface IMResponce {
     error: boolean
     data:  IMFilms[]
+    page?:number
+    pages?:number
 }
 
 

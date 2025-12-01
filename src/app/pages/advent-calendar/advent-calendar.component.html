@@ -1,0 +1,42 @@
+<div class="wrapper">
+
+  
+  
+    @defer (when movies;) {
+    <div class="movies">
+        @for (movie of movies; track $index) {
+        <div class="advent_day">
+            <div class="movie" [routerLink]="['../movie', movie.id]">
+                @if (movie.day == 25 || movie.day == 31) {
+                      <div class="congratulations">
+                    @if (movie.day == 25) {<span>С Рождеством!</span>}
+                    @if (movie.day == 31) {<span>С Новым Годом!</span>}
+                </div>
+                }
+                <div class="block">
+                    <div class="poster">
+                    <img [src]="movie.poster.url" class="poster__img" [alt]="movie.name" loading="lazy" (load)="onImageLoad($event)"  #posterImage>
+                  
+                    <img src="/img/road-1.png" class="road road-1" alt="ad" srcset="">
+                    <img src="/img/road-2.png" class="road road-2" alt="ad" srcset="">
+                </div>
+                  <div class="day"><span>{{movie.day}}</span></div>
+                </div>
+                <span class="title">{{movie.name}}</span>
+            </div>
+        </div>
+        }
+
+    </div>
+    } @placeholder {
+    <app-sckeleton />
+    }
+  <div class="box">
+
+        <div class="line line_1">
+            <span class="box_text">Приходи завтра, что бы узнать, какой фильм мы подготовили на {{day + 1}}
+                декабря.</span>
+        </div>
+        <div class="line line_2"></div>
+    </div>
+</div>

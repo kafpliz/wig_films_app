@@ -1,6 +1,6 @@
 <div class="card">
-    <div class="card_poster">
-        <img [src]="card.logo" class="card_poster__img" alt="Card logo">
+    <div class="card_poster" [class.loaded]="imageLoaded">
+        <img [src]="card.logo" class="card_poster__img" alt="Card logo" loading="lazy" (load)="onImageLoad($event)" #cardImage>
         @if (card.rating.kp) {
         <div class="card_rating" [ngStyle]="{background: checkRatingStyle(card.rating.kp)}">
             <span class="">{{card.rating.kp.toFixed(1)}}</span>
