@@ -27,7 +27,7 @@ export class AppComponent implements OnInit, OnDestroy {
   needPad:boolean = false
   #themeSubscription!:Subscription;
   isSnow = signal<boolean>(true)
-  
+
   constructor(){
      effect(()=> {
       this.needPad = this.#service.isFullscreen();
@@ -37,8 +37,7 @@ export class AppComponent implements OnInit, OnDestroy {
   
 
   ngOnInit() {
-
-
+    const browseVersion = localStorage.getItem('version') || null
 
     this.theme.loadSavedTheme()
     this.currTheme = this.theme.currTheme()
