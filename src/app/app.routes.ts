@@ -16,7 +16,7 @@ export const routes: Routes = [
     {
         path: 'movie/:id', component: MovieComponent,
     },
-    {        path: 'seasons', component: SeasonsComponent     },
+    { path: 'seasons', component: SeasonsComponent },
     { path: 'genres', component: GenresComponent },
     { path: 'favourite', component: FavouriteComponent },
     { path: 'profile', component: ProfileComponent },

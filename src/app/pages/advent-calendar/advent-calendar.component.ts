@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, inject, OnInit } from '@angular/core';
 import { AdventService } from '../../core/service/advent.service';
 import { SkeletonComponent } from '../../shared/ui/skeleton/sckeleton.component';
 import { RouterLink } from '@angular/router';
@@ -23,12 +23,14 @@ export class AdventCalendarComponent implements OnInit {
   movies: MovieDay[] | null = null
   day = new Date().getDate()
   #service = inject(AdventService)
-
+  imagesLoaded = 0;
+  totalImages = 0;
 
   ngOnInit(): void {
  
     this.#service.getMovies().subscribe(data => {
       this.movies = data.movies
+      this.totalImages = this.movies.length
     })
   }
 
@@ -37,6 +39,15 @@ export class AdventCalendarComponent implements OnInit {
   onImageLoad(event: Event){
       const img = event.target as HTMLImageElement;
     img.classList.add('loaded');
+    this.imagesLoaded++
+    if(this.imagesLoaded == this.totalImages &&  this.totalImages > 0){
+       setTimeout(() => {
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: 'smooth'
+        })
+      }, 100);
+    }
   }
  
 
